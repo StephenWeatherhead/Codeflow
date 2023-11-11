@@ -6,8 +6,10 @@ namespace TestApp
         static void Main(string[] args)
         {
             WorkflowInvoker.Invoke(new HelloWorldActivity());
-            WorkflowInvoker.Invoke(new HelloWorldCodeflow());
-            WorkflowInvoker.Invoke(new HelloWorldActivity());
+            WorkflowInvoker.Invoke(new HelloWorldCodeflow(), new Dictionary<string, object>()
+            {
+                { nameof(HelloWorldCodeflow.Name), "Stephen"}
+            });
             Console.ReadKey();
         }
     }

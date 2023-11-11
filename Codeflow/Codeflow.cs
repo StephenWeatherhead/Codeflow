@@ -22,4 +22,19 @@ namespace System.Activities
         }
         protected abstract void Build(IWorkflowBuilder p_Builder);
     }
+
+    public abstract class Codeflow<T> : Activity<T>
+    {
+        public Codeflow()
+        {
+            Implementation = GetImplementation;
+        }
+        private Activity GetImplementation()
+        {
+            WorkflowBuilder l_Builder = new WorkflowBuilder();
+            Build(l_Builder);
+            return l_Builder.GetActivity();
+        }
+        protected abstract void Build(IWorkflowBuilder p_Builder);
+    }
 }

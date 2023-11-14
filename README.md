@@ -3,23 +3,23 @@ An API to make code-based workflows easier to define in CoreWf. This work is lic
 
 ## Checklist
 ### Primitives
-[x] Assign
-[ ] Delay
-[ ] InvokeDelegate
-[ ] InvokeMethod
-[x] WriteLine
+- [x] Assign
+- [ ] Delay
+- [ ] InvokeDelegate
+- [ ] InvokeMethod
+- [x] WriteLine
 
 ### Error Handling
-[ ] Rethrow
-[ ] Throw
-[ ] TryCatch
+- [ ] Rethrow
+- [ ] Throw
+- [ ] TryCatch
 
 ### Control Flow
-[ ] DoWhile
-[ ] ForEach
-[ ] If
-[ ] Parallel
-[ ] ParallelForEach
-[ ] Pick
-[ ] Switch
-[ ] While
+- [ ] DoWhile
+- [ ] ForEach
+- [ ] If
+- [ ] Parallel
+- [ ] ParallelForEach
+- [ ] Pick
+- [ ] Switch
+- [ ] While

@@ -29,8 +29,8 @@ namespace TestApp
             var l_MyVar = p_Builder.Variable<int>("l_MyVar");
             var l_MyVarString = p_Builder.Variable<string>("l_MyVarString");
 
-            var l_AssignBuilder = p_Builder.Assign<int>(l_MyVar, new RandomInt());
-            l_AssignBuilder.DisplayName = "Assign Random Integer";
+            p_Builder.Assign<int>(l_MyVar, new RandomInt())
+                .DisplayName("Assign Random Integer");
 
             p_Builder.WriteLine(env => $"Hello {Name.Get(env)}! And MyVar is :");
 

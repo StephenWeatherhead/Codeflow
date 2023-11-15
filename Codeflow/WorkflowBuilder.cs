@@ -48,7 +48,7 @@ namespace System.Activities
 
     public interface ICfActivityBuilder
     {
-        public string DisplayName { get; set; }
+        ICfActivityBuilder DisplayName(string p_Name);
     }
 
     internal interface ICfActivityWrapper : ICfActivityBuilder
@@ -63,12 +63,16 @@ namespace System.Activities
             m_Activity = p_Activity;
         }
         private Activity m_Activity;
-        public string DisplayName { get; set; }
 
         public Activity GetActivity()
         {
-            m_Activity.DisplayName = DisplayName;
             return m_Activity;
+        }
+
+        public ICfActivityBuilder DisplayName(string p_Name)
+        {
+            m_Activity.DisplayName = p_Name;
+            return this;
         }
     }
 

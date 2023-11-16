@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.PowerFx.Core.Public.Values;
+using System;
 using System.Activities.Expressions;
 using System.Activities.Statements;
 using System.Collections.Generic;
@@ -44,6 +45,8 @@ namespace System.Activities
         ICfActivityBuilder Assign<TValue>(Variable p_To, Activity<TValue> p_Value);
         ICfActivityBuilder Assign<TValue>(Variable p_To, DelegateArgument p_Value);
         ICfActivityBuilder Assign<TValue>(Variable p_To, Variable p_Value);
+
+        ICfActivityBuilder InvokeMethod<TTarget>(TTarget p_Target, string p_MethodName);
     }
 
     public interface ICfActivityBuilder
@@ -373,6 +376,16 @@ namespace System.Activities
             {
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
+            });
+            return m_StepBuilder;
+        }
+
+        public ICfActivityBuilder InvokeMethod<TTarget>(TTarget p_Target, string p_MethodName)
+        {
+            m_StepBuilder = new SimpleActivityWrapper(new InvokeMethod
+            {
+                TargetObject = new InArgument<TTarget>(p_Target),
+                MethodName = p_MethodName
             });
             return m_StepBuilder;
         }

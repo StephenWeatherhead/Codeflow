@@ -36,8 +36,18 @@ namespace TestApp
 
             p_Builder.Assign(l_MyVarString, (env) => l_MyVar.Get(env).ToString());
             p_Builder.WriteLine(l_MyVarString);
+            p_Builder.InvokeMethod("Test", nameof(string.ToUpper));
         }
     }
+
+    public class MyTestObject
+    {
+        public void WriteMessage()
+        {
+            Console.WriteLine("Hello there! This is a message from MyTestObject");
+        }
+    }
+
     public class RandomInt : Codeflow<int>
     {
         protected override void Build(IWorkflowBuilder p_Builder)

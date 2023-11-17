@@ -46,7 +46,7 @@ namespace System.Activities
         ICfActivityBuilder Assign<TValue>(Variable p_To, DelegateArgument p_Value);
         ICfActivityBuilder Assign<TValue>(Variable p_To, Variable p_Value);
 
-        ICfActivityBuilder InvokeMethod<TTarget>(TTarget p_Target, string p_MethodName);
+        IInvokeMethodBuilder InvokeMethod<TTarget>(TTarget p_Target, string p_MethodName);
     }
 
     public interface ICfActivityBuilder
@@ -54,12 +54,12 @@ namespace System.Activities
         ICfActivityBuilder DisplayName(string p_Name);
     }
 
-    internal interface ICfActivityWrapper : ICfActivityBuilder
+    internal interface ICfActivityWrapper
     {
         public Activity GetActivity();
     }
 
-    internal class SimpleActivityWrapper : ICfActivityWrapper
+    internal class SimpleActivityWrapper : ICfActivityWrapper, ICfActivityBuilder
     {
         public SimpleActivityWrapper(Activity p_Activity)
         {
@@ -108,35 +108,35 @@ namespace System.Activities
         {
             FinishLastStep();
             m_StepBuilder = new SimpleActivityWrapper(new WriteLine { Text = new InArgument<string>(p_Text) });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder WriteLine(Expression<Func<ActivityContext, string>> p_Text)
         {
             FinishLastStep();
             m_StepBuilder = new SimpleActivityWrapper(new WriteLine { Text = new InArgument<string>(p_Text) });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder WriteLine(Activity<string> p_Text)
         {
             FinishLastStep();
             m_StepBuilder = new SimpleActivityWrapper(new WriteLine { Text = new InArgument<string>(p_Text) });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder WriteLine(DelegateArgument p_Text)
         {
             FinishLastStep();
             m_StepBuilder = new SimpleActivityWrapper(new WriteLine { Text = new InArgument<string>(p_Text) });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder WriteLine(Variable p_Text)
         {
             FinishLastStep();
             m_StepBuilder = new SimpleActivityWrapper(new WriteLine { Text = new InArgument<string>(p_Text) });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public Variable<TVariable> Variable<TVariable>(string p_Name)
@@ -168,7 +168,7 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder Assign<TValue>(Activity<Location<TValue>> p_To, Expression<Func<ActivityContext, TValue>> p_Value)
@@ -179,7 +179,7 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder Assign<TValue>(Activity<Location<TValue>> p_To, Activity<TValue> p_Value)
@@ -190,7 +190,7 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder Assign<TValue>(Activity<Location<TValue>> p_To, DelegateArgument p_Value)
@@ -201,7 +201,7 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder Assign<TValue>(Activity<Location<TValue>> p_To, Variable p_Value)
@@ -212,7 +212,7 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder Assign<TValue>(DelegateArgument p_To, TValue p_Value)
@@ -223,7 +223,7 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder Assign<TValue>(DelegateArgument p_To, Expression<Func<ActivityContext, TValue>> p_Value)
@@ -234,7 +234,7 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder Assign<TValue>(DelegateArgument p_To, Activity<TValue> p_Value)
@@ -245,7 +245,7 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder Assign<TValue>(DelegateArgument p_To, DelegateArgument p_Value)
@@ -256,7 +256,7 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder Assign<TValue>(DelegateArgument p_To, Variable p_Value)
@@ -267,7 +267,7 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder Assign<TValue>(Expression<Func<ActivityContext, TValue>> p_To, TValue p_Value)
@@ -278,7 +278,7 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder Assign<TValue>(Expression<Func<ActivityContext, TValue>> p_To, Expression<Func<ActivityContext, TValue>> p_Value)
@@ -289,7 +289,7 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder Assign<TValue>(Expression<Func<ActivityContext, TValue>> p_To, Activity<TValue> p_Value)
@@ -300,7 +300,7 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder Assign<TValue>(Expression<Func<ActivityContext, TValue>> p_To, DelegateArgument p_Value)
@@ -311,7 +311,7 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder Assign<TValue>(Expression<Func<ActivityContext, TValue>> p_To, Variable p_Value)
@@ -322,7 +322,7 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder Assign<TValue>(Variable p_To, TValue p_Value)
@@ -333,7 +333,7 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder Assign<TValue>(Variable p_To, Expression<Func<ActivityContext, TValue>> p_Value)
@@ -344,7 +344,7 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder Assign<TValue>(Variable p_To, Activity<TValue> p_Value)
@@ -355,7 +355,7 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder Assign<TValue>(Variable p_To, DelegateArgument p_Value)
@@ -366,7 +366,7 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
         public ICfActivityBuilder Assign<TValue>(Variable p_To, Variable p_Value)
@@ -377,17 +377,18 @@ namespace System.Activities
                 To = new OutArgument<TValue>(p_To),
                 Value = new InArgument<TValue>(p_Value)
             });
-            return m_StepBuilder;
+            return (ICfActivityBuilder)m_StepBuilder;
         }
 
-        public ICfActivityBuilder InvokeMethod<TTarget>(TTarget p_Target, string p_MethodName)
+        public IInvokeMethodBuilder InvokeMethod<TTarget>(TTarget p_Target, string p_MethodName)
         {
-            m_StepBuilder = new SimpleActivityWrapper(new InvokeMethod
+            FinishLastStep();
+            m_StepBuilder = new InvokeMethodBuilder(new InvokeMethod
             {
                 TargetObject = new InArgument<TTarget>(p_Target),
                 MethodName = p_MethodName
             });
-            return m_StepBuilder;
+            return (IInvokeMethodBuilder)m_StepBuilder;
         }
     }
 }

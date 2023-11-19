@@ -37,8 +37,10 @@ namespace TestApp
 
             p_Builder.Assign(l_MyVarString, (env) => l_MyVar.Get(env).ToString());
             p_Builder.WriteLine(l_MyVarString);
+
             p_Builder.InvokeMethod("Test", nameof(string.ToUpper))
-                .In((env) => CultureInfo.CurrentCulture);
+                .Result<string>(l_MyVarString);
+            p_Builder.WriteLine(l_MyVarString);
         }
     }
 

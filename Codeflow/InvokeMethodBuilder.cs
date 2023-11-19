@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.PowerFx.Core.Public.Values;
+using System;
 using System.Activities.Statements;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,11 @@ namespace System.Activities
     public interface IInvokeMethodBuilder
     {
         IInvokeMethodBuilder DisplayName(string p_Name);
-        IInvokeMethodBuilder In<TValue>(TValue p_Value);
-        IInvokeMethodBuilder In<TValue>(Expression<Func<ActivityContext, TValue>> p_Value);
-        IInvokeMethodBuilder In<TValue>(Activity<TValue> p_Value);
-        IInvokeMethodBuilder In<TValue>(DelegateArgument p_Value);
-        IInvokeMethodBuilder In<TValue>(Variable p_Value);
+
+        IInvokeMethodBuilder Result<TResult>(Activity<Location<TResult>> p_Result);
+        IInvokeMethodBuilder Result<TResult>(DelegateArgument p_Result);
+        IInvokeMethodBuilder Result<TResult>(Expression<Func<ActivityContext, TResult>> p_Result);
+        IInvokeMethodBuilder Result<TResult>(Variable p_Result);
     }
 
     internal class InvokeMethodBuilder : IInvokeMethodBuilder, ICfActivityWrapper
@@ -34,39 +35,33 @@ namespace System.Activities
             return this;
         }
 
-        public IInvokeMethodBuilder In<TValue>(TValue p_Value)
-        {
-            m_Activity.Parameters.Add(new InArgument<TValue>(p_Value));
-            return this;
-        }
-
-        public IInvokeMethodBuilder In<TValue>(Expression<Func<ActivityContext, TValue>> p_Value)
-        {
-            m_Activity.Parameters.Add(new InArgument<TValue>(p_Value));
-            return this;
-        }
-
-        public IInvokeMethodBuilder In<TValue>(Activity<TValue> p_Value)
-        {
-            m_Activity.Parameters.Add(new InArgument<TValue>(p_Value));
-            return this;
-        }
-
-        public IInvokeMethodBuilder In<TValue>(DelegateArgument p_Value)
-        {
-            m_Activity.Parameters.Add(new InArgument<TValue>(p_Value));
-            return this;
-        }
-
-        public IInvokeMethodBuilder In<TValue>(Variable p_Value)
-        {
-            m_Activity.Parameters.Add(new InArgument<TValue>(p_Value));
-            return this;
-        }
-
         public Activity GetActivity()
         {
             return m_Activity;
+        }
+
+        public IInvokeMethodBuilder Result<TResult>(Activity<Location<TResult>> p_Result)
+        {
+            m_Activity.Result = new OutArgument<TResult>(p_Result);
+            return this;
+        }
+
+        public IInvokeMethodBuilder Result<TResult>(DelegateArgument p_Result)
+        {
+            m_Activity.Result = new OutArgument<TResult>(p_Result);
+            return this;
+        }
+
+        public IInvokeMethodBuilder Result<TResult>(Expression<Func<ActivityContext, TResult>> p_Result)
+        {
+            m_Activity.Result = new OutArgument<TResult>(p_Result);
+            return this;
+        }
+
+        public IInvokeMethodBuilder Result<TResult>(Variable p_Result)
+        {
+            m_Activity.Result = new OutArgument<TResult>(p_Result);
+            return this;
         }
     }
 }

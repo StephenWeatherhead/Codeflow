@@ -21,6 +21,51 @@ namespace System.Activities
             return l_Builder.GetActivity();
         }
         protected abstract void Build(IWorkflowBuilder p_Builder);
+
+        protected InArgument<TValue> In<TValue>(TValue p_Value)
+        {
+            return new InArgument<TValue>(p_Value);
+        }
+
+        protected InArgument<TValue> In<TValue>(Expression<Func<ActivityContext, TValue>> p_Value)
+        {
+            return new InArgument<TValue>(p_Value);
+        }
+
+        protected InArgument<TValue> In<TValue>(Activity<TValue> p_Value)
+        {
+            return new InArgument<TValue>(p_Value);
+        }
+
+        protected InArgument<TValue> In<TValue>(DelegateArgument p_Value)
+        {
+            return new InArgument<TValue>(p_Value);
+        }
+
+        protected InArgument<TValue> In<TValue>(Variable p_Value)
+        {
+            return new InArgument<TValue>(p_Value);
+        }
+
+        protected OutArgument<TValue> Out<TValue>(Activity<Location<TValue>> p_Value)
+        {
+            return new OutArgument<TValue>(p_Value);
+        }
+
+        protected OutArgument<TValue> Out<TValue>(DelegateArgument p_Value)
+        {
+            return new OutArgument<TValue>(p_Value);
+        }
+
+        protected OutArgument<TValue> Out<TValue>(Expression<Func<ActivityContext, TValue>> p_Value)
+        {
+            return new OutArgument<TValue>(p_Value);
+        }
+
+        protected OutArgument<TValue> Out<TValue>(Variable p_Value)
+        {
+            return new OutArgument<TValue>(p_Value);
+        }
     }
 
     public abstract class Codeflow<T> : Activity<T>
@@ -36,5 +81,50 @@ namespace System.Activities
             return l_Builder.GetActivity();
         }
         protected abstract void Build(IWorkflowBuilder p_Builder);
+
+        protected InArgument<TValue> In<TValue>(TValue p_Value)
+        {
+            return new InArgument<TValue>(p_Value);
+        }
+
+        protected InArgument<TValue> In<TValue>(Expression<Func<ActivityContext, TValue>> p_Value)
+        {
+            return new InArgument<TValue>(p_Value);
+        }
+
+        protected InArgument<TValue> In<TValue>(Activity<TValue> p_Value)
+        {
+            return new InArgument<TValue>(p_Value);
+        }
+
+        protected InArgument<TValue> In<TValue>(DelegateArgument p_Value)
+        {
+            return new InArgument<TValue>(p_Value);
+        }
+
+        protected InArgument<TValue> In<TValue>(Variable p_Value)
+        {
+            return new InArgument<TValue>(p_Value);
+        }
+
+        protected OutArgument<TValue> Out<TValue>(Activity<Location<TValue>> p_Value)
+        {
+            return new OutArgument<TValue>(p_Value);
+        }
+
+        protected OutArgument<TValue> Out<TValue>(DelegateArgument p_Value)
+        {
+            return new OutArgument<TValue>(p_Value);
+        }
+
+        protected OutArgument<TValue> Out<TValue>(Expression<Func<ActivityContext, TValue>> p_Value)
+        {
+            return new OutArgument<TValue>(p_Value);
+        }
+
+        protected OutArgument<TValue> Out<TValue>(Variable p_Value)
+        {
+            return new OutArgument<TValue>(p_Value);
+        }
     }
 }

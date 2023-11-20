@@ -46,7 +46,7 @@ namespace System.Activities
         ICfActivityBuilder Assign<TValue>(Variable p_To, DelegateArgument p_Value);
         ICfActivityBuilder Assign<TValue>(Variable p_To, Variable p_Value);
 
-        IInvokeMethodBuilder InvokeMethod<TTarget>(TTarget p_Target, string p_MethodName);
+        IInvokeMethodBuilder InvokeMethod<TTarget>(TTarget p_Target, string p_MethodName, params Argument[] p_Arguments);
     }
 
     public interface ICfActivityBuilder
@@ -380,15 +380,24 @@ namespace System.Activities
             return (ICfActivityBuilder)m_StepBuilder;
         }
 
-        public IInvokeMethodBuilder InvokeMethod<TTarget>(TTarget p_Target, string p_MethodName)
+        public IInvokeMethodBuilder InvokeMethod<TTarget>(TTarget p_Target, string p_MethodName, params Argument[] p_Arguments)
         {
             FinishLastStep();
-            m_StepBuilder = new InvokeMethodBuilder(new InvokeMethod
+            var l_Activity = new InvokeMethod
             {
                 TargetObject = new InArgument<TTarget>(p_Target),
                 MethodName = p_MethodName
-            });
+            };
+            AddRange(l_Activity.Parameters, p_Arguments);
+            m_StepBuilder = new InvokeMethodBuilder(l_Activity);
             return (IInvokeMethodBuilder)m_StepBuilder;
+        }
+        private void AddRange<TValue>(ICollection<TValue> p_Collection, IEnumerable<TValue> p_Values)
+        {
+            foreach(var l_Value in p_Values)
+            {
+                p_Collection.Add(l_Value);
+            }
         }
     }
 }

@@ -46,7 +46,17 @@ namespace System.Activities
         ICfActivityBuilder Assign<TValue>(Variable p_To, DelegateArgument p_Value);
         ICfActivityBuilder Assign<TValue>(Variable p_To, Variable p_Value);
 
+        
         IInvokeMethodBuilder InvokeMethod<TTarget>(TTarget p_Target, string p_MethodName, params Argument[] p_Arguments);
+
+        /// <summary>
+        /// Used for invoking members of a type (i.e. static methods)
+        /// </summary>
+        /// <typeparam name="TTarget"></typeparam>
+        /// <param name="p_MethodName"></param>
+        /// <param name="p_Arguments"></param>
+        /// <returns></returns>
+        IInvokeMethodBuilder InvokeMethod(Type p_TargetType, string p_MethodName, params Argument[] p_Arguments);
     }
 
     public interface ICfActivityBuilder
@@ -388,16 +398,22 @@ namespace System.Activities
                 TargetObject = new InArgument<TTarget>(p_Target),
                 MethodName = p_MethodName
             };
-            AddRange(l_Activity.Parameters, p_Arguments);
+            l_Activity.Parameters.AddRange(p_Arguments);
             m_StepBuilder = new InvokeMethodBuilder(l_Activity);
             return (IInvokeMethodBuilder)m_StepBuilder;
         }
-        private void AddRange<TValue>(ICollection<TValue> p_Collection, IEnumerable<TValue> p_Values)
+
+        public IInvokeMethodBuilder InvokeMethod(Type p_TargetType, string p_MethodName, params Argument[] p_Arguments)
         {
-            foreach(var l_Value in p_Values)
+            FinishLastStep();
+            var l_Activity = new InvokeMethod
             {
-                p_Collection.Add(l_Value);
-            }
+                TargetType = p_TargetType,
+                MethodName = p_MethodName
+            };
+            l_Activity.Parameters.AddRange(p_Arguments);
+            m_StepBuilder = new InvokeMethodBuilder(l_Activity);
+            return (IInvokeMethodBuilder)m_StepBuilder;
         }
     }
 }

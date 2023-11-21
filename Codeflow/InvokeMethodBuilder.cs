@@ -19,6 +19,11 @@ namespace System.Activities
         IInvokeMethodBuilder Result<TResult>(DelegateArgument p_Result);
         IInvokeMethodBuilder Result<TResult>(Expression<Func<ActivityContext, TResult>> p_Result);
         IInvokeMethodBuilder Result<TResult>(Variable p_Result);
+
+        IInvokeMethodBuilder GenericTypeArguments(params Type[] p_TypeArguments);
+
+        IInvokeMethodBuilder RunAsync();
+        IInvokeMethodBuilder RunAsync(bool p_RunAsync);
     }
 
     internal class InvokeMethodBuilder : IInvokeMethodBuilder, ICfActivityWrapper
@@ -61,6 +66,25 @@ namespace System.Activities
         public IInvokeMethodBuilder Result<TResult>(Variable p_Result)
         {
             m_Activity.Result = new OutArgument<TResult>(p_Result);
+            return this;
+        }
+
+        public IInvokeMethodBuilder GenericTypeArguments(params Type[] p_TypeArguments)
+        {
+            m_Activity.GenericTypeArguments.Clear();
+            m_Activity.GenericTypeArguments.AddRange(p_TypeArguments);
+            return this;
+        }
+
+        public IInvokeMethodBuilder RunAsync()
+        {
+            m_Activity.RunAsynchronously = true;
+            return this;
+        }
+
+        public IInvokeMethodBuilder RunAsync(bool p_RunAsync)
+        {
+            m_Activity.RunAsynchronously = p_RunAsync;
             return this;
         }
     }

@@ -48,6 +48,11 @@ namespace System.Activities
 
         
         IInvokeMethodBuilder InvokeMethod<TTarget>(TTarget p_Target, string p_MethodName, params Argument[] p_Arguments);
+        IInvokeMethodBuilder InvokeMethod<TTarget>(Expression<Func<ActivityContext, TTarget>> p_Target, string p_MethodName, params Argument[] p_Arguments);
+        IInvokeMethodBuilder InvokeMethod<TTarget>(Activity<TTarget> p_Target, string p_MethodName, params Argument[] p_Arguments);
+        IInvokeMethodBuilder InvokeMethod<TTarget>(DelegateArgument p_Target, string p_MethodName, params Argument[] p_Arguments);
+        IInvokeMethodBuilder InvokeMethod<TTarget>(Variable p_Target, string p_MethodName, params Argument[] p_Arguments);
+
 
         /// <summary>
         /// Used for invoking members of a type (i.e. static methods)
@@ -409,6 +414,58 @@ namespace System.Activities
             var l_Activity = new InvokeMethod
             {
                 TargetType = p_TargetType,
+                MethodName = p_MethodName
+            };
+            l_Activity.Parameters.AddRange(p_Arguments);
+            m_StepBuilder = new InvokeMethodBuilder(l_Activity);
+            return (IInvokeMethodBuilder)m_StepBuilder;
+        }
+
+        public IInvokeMethodBuilder InvokeMethod<TTarget>(Expression<Func<ActivityContext, TTarget>> p_Target, string p_MethodName, params Argument[] p_Arguments)
+        {
+            FinishLastStep();
+            var l_Activity = new InvokeMethod
+            {
+                TargetObject = new InArgument<TTarget>(p_Target),
+                MethodName = p_MethodName
+            };
+            l_Activity.Parameters.AddRange(p_Arguments);
+            m_StepBuilder = new InvokeMethodBuilder(l_Activity);
+            return (IInvokeMethodBuilder)m_StepBuilder;
+        }
+
+        public IInvokeMethodBuilder InvokeMethod<TTarget>(Activity<TTarget> p_Target, string p_MethodName, params Argument[] p_Arguments)
+        {
+            FinishLastStep();
+            var l_Activity = new InvokeMethod
+            {
+                TargetObject = new InArgument<TTarget>(p_Target),
+                MethodName = p_MethodName
+            };
+            l_Activity.Parameters.AddRange(p_Arguments);
+            m_StepBuilder = new InvokeMethodBuilder(l_Activity);
+            return (IInvokeMethodBuilder)m_StepBuilder;
+        }
+
+        public IInvokeMethodBuilder InvokeMethod<TTarget>(DelegateArgument p_Target, string p_MethodName, params Argument[] p_Arguments)
+        {
+            FinishLastStep();
+            var l_Activity = new InvokeMethod
+            {
+                TargetObject = new InArgument<TTarget>(p_Target),
+                MethodName = p_MethodName
+            };
+            l_Activity.Parameters.AddRange(p_Arguments);
+            m_StepBuilder = new InvokeMethodBuilder(l_Activity);
+            return (IInvokeMethodBuilder)m_StepBuilder;
+        }
+
+        public IInvokeMethodBuilder InvokeMethod<TTarget>(Variable p_Target, string p_MethodName, params Argument[] p_Arguments)
+        {
+            FinishLastStep();
+            var l_Activity = new InvokeMethod
+            {
+                TargetObject = new InArgument<TTarget>(p_Target),
                 MethodName = p_MethodName
             };
             l_Activity.Parameters.AddRange(p_Arguments);

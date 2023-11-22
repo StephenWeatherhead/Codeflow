@@ -42,6 +42,7 @@ namespace TestApp
                 .Result<string>(l_MyVarString);
 
             p_Builder.InvokeMethod(typeof(Console), nameof(Console.WriteLine), In<string>(l_MyVarString));
+            p_Builder.InvokeMethod(e => (new MyTestObject()), nameof(MyTestObject.WriteMessage));
         }
     }
 

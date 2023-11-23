@@ -33,24 +33,24 @@ namespace TestApp
             p_Builder.Assign<int>(l_MyVar, new RandomInt())
                 .DisplayName("Assign Random Integer");
 
-            p_Builder.WriteLine(env => $"Hello {Name.Get(env)}! And MyVar is :");
+            p_Builder.WriteLine(e => $"Hello {Name.Get(e)}! And MyVar is :");
 
-            p_Builder.Assign(l_MyVarString, (env) => l_MyVar.Get(env).ToString());
+            p_Builder.Assign(l_MyVarString, e => l_MyVar.Get(e).ToString());
             p_Builder.WriteLine(l_MyVarString);
 
-            p_Builder.InvokeMethod("Test", nameof(string.ToUpper), In((env) => CultureInfo.CurrentCulture))
+            p_Builder.InvokeMethod("Test", nameof(string.ToUpper), In(e => CultureInfo.CurrentCulture))
                 .Result<string>(l_MyVarString);
 
             p_Builder.InvokeMethod(typeof(Console), nameof(Console.WriteLine), In<string>(l_MyVarString));
-            p_Builder.InvokeMethod(e => (new MyTestObject()), nameof(MyTestObject.WriteMessage));
+            p_Builder.InvokeMethod(e => (new MyTestObject()), nameof(MyTestObject.WriteMessage), Lt("Literal"));
         }
     }
 
     public class MyTestObject
     {
-        public void WriteMessage()
+        public void WriteMessage(string p_MyString)
         {
-            Console.WriteLine("Hello there! This is a message from MyTestObject");
+            Console.WriteLine($"Hello there! This is a message from MyTestObject. Your string is \"{p_MyString}\"");
         }
     }
 

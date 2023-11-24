@@ -22,7 +22,7 @@ namespace System.Activities
         }
         protected abstract void Build(IWorkflowBuilder p_Builder);
 
-        protected InArgument<TValue> Lt<TValue>(TValue p_Literal)
+        protected InArgument<TValue> In<TValue>(TValue p_Literal)
         {
             return new InArgument<TValue>(p_Literal);
         }
@@ -42,7 +42,7 @@ namespace System.Activities
             return new InArgument<TValue>(p_Value);
         }
 
-        protected InArgument<TValue> In<TValue>(Variable p_Value)
+        protected InArgument<TValue> In<TValue>(Variable<TValue> p_Value)
         {
             return new InArgument<TValue>(p_Value);
         }
@@ -82,7 +82,7 @@ namespace System.Activities
         }
         protected abstract void Build(IWorkflowBuilder p_Builder);
 
-        protected InArgument<TValue> Lt<TValue>(TValue p_Literal)
+        protected InArgument<TValue> In<TValue>(TValue p_Literal)
         {
             return new InArgument<TValue>(p_Literal);
         }
@@ -102,7 +102,7 @@ namespace System.Activities
             return new InArgument<TValue>(p_Value);
         }
 
-        protected InArgument<TValue> In<TValue>(Variable p_Value)
+        protected InArgument<TValue> In<TValue>(Variable<TValue> p_Value)
         {
             return new InArgument<TValue>(p_Value);
         }

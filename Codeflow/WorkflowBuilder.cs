@@ -16,7 +16,7 @@ namespace System.Activities
         ICfActivityBuilder WriteLine(Expression<Func<ActivityContext, string>> p_Text);
         ICfActivityBuilder WriteLine(Activity<string> p_Text);
         ICfActivityBuilder WriteLine(DelegateArgument p_Text);
-        ICfActivityBuilder WriteLine(Variable p_Text);
+        ICfActivityBuilder WriteLine(Variable<string> p_Text);
 
         Variable<TVariable> Variable<TVariable>(string p_Name);
         Variable<TVariable> Variable<TVariable>(string p_Name, TVariable p_DefaultValue);
@@ -26,33 +26,31 @@ namespace System.Activities
         ICfActivityBuilder Assign<TValue>(Activity<Location<TValue>> p_To, Expression<Func<ActivityContext, TValue>> p_Value);
         ICfActivityBuilder Assign<TValue>(Activity<Location<TValue>> p_To, Activity<TValue> p_Value);
         ICfActivityBuilder Assign<TValue>(Activity<Location<TValue>> p_To, DelegateArgument p_Value);
-        ICfActivityBuilder Assign<TValue>(Activity<Location<TValue>> p_To, Variable p_Value);
+        ICfActivityBuilder Assign<TValue>(Activity<Location<TValue>> p_To, Variable<TValue> p_Value);
 
         ICfActivityBuilder Assign<TValue>(DelegateArgument p_To, TValue p_Value);
         ICfActivityBuilder Assign<TValue>(DelegateArgument p_To, Expression<Func<ActivityContext, TValue>> p_Value);
         ICfActivityBuilder Assign<TValue>(DelegateArgument p_To, Activity<TValue> p_Value);
         ICfActivityBuilder Assign<TValue>(DelegateArgument p_To, DelegateArgument p_Value);
-        ICfActivityBuilder Assign<TValue>(DelegateArgument p_To, Variable p_Value);
+        ICfActivityBuilder Assign<TValue>(DelegateArgument p_To, Variable<TValue> p_Value);
 
         ICfActivityBuilder Assign<TValue>(Expression<Func<ActivityContext, TValue>> p_To, TValue p_Value);
         ICfActivityBuilder Assign<TValue>(Expression<Func<ActivityContext, TValue>> p_To, Expression<Func<ActivityContext, TValue>> p_Value);
         ICfActivityBuilder Assign<TValue>(Expression<Func<ActivityContext, TValue>> p_To, Activity<TValue> p_Value);
         ICfActivityBuilder Assign<TValue>(Expression<Func<ActivityContext, TValue>> p_To, DelegateArgument p_Value);
-        ICfActivityBuilder Assign<TValue>(Expression<Func<ActivityContext, TValue>> p_To, Variable p_Value);
+        ICfActivityBuilder Assign<TValue>(Expression<Func<ActivityContext, TValue>> p_To, Variable<TValue> p_Value);
 
         ICfActivityBuilder Assign<TValue>(Variable p_To, TValue p_Value);
         ICfActivityBuilder Assign<TValue>(Variable p_To, Expression<Func<ActivityContext, TValue>> p_Value);
         ICfActivityBuilder Assign<TValue>(Variable p_To, Activity<TValue> p_Value);
         ICfActivityBuilder Assign<TValue>(Variable p_To, DelegateArgument p_Value);
-        ICfActivityBuilder Assign<TValue>(Variable p_To, Variable p_Value);
-
+        ICfActivityBuilder Assign<TValue>(Variable p_To, Variable<TValue> p_Value);
         
         IInvokeMethodBuilder InvokeMethod<TTarget>(TTarget p_Target, string p_MethodName, params Argument[] p_Arguments);
         IInvokeMethodBuilder InvokeMethod<TTarget>(Expression<Func<ActivityContext, TTarget>> p_Target, string p_MethodName, params Argument[] p_Arguments);
         IInvokeMethodBuilder InvokeMethod<TTarget>(Activity<TTarget> p_Target, string p_MethodName, params Argument[] p_Arguments);
         IInvokeMethodBuilder InvokeMethod<TTarget>(DelegateArgument p_Target, string p_MethodName, params Argument[] p_Arguments);
-        IInvokeMethodBuilder InvokeMethod<TTarget>(Variable p_Target, string p_MethodName, params Argument[] p_Arguments);
-
+        IInvokeMethodBuilder InvokeMethod<TTarget>(Variable<TTarget> p_Target, string p_MethodName, params Argument[] p_Arguments);
 
         /// <summary>
         /// Used for invoking members of a type (i.e. static methods)
@@ -147,7 +145,7 @@ namespace System.Activities
             return (ICfActivityBuilder)m_StepBuilder;
         }
 
-        public ICfActivityBuilder WriteLine(Variable p_Text)
+        public ICfActivityBuilder WriteLine(Variable<string> p_Text)
         {
             FinishLastStep();
             m_StepBuilder = new SimpleActivityWrapper(new WriteLine { Text = new InArgument<string>(p_Text) });
@@ -219,7 +217,7 @@ namespace System.Activities
             return (ICfActivityBuilder)m_StepBuilder;
         }
 
-        public ICfActivityBuilder Assign<TValue>(Activity<Location<TValue>> p_To, Variable p_Value)
+        public ICfActivityBuilder Assign<TValue>(Activity<Location<TValue>> p_To, Variable<TValue> p_Value)
         {
             FinishLastStep();
             m_StepBuilder = new SimpleActivityWrapper(new Assign
@@ -274,7 +272,7 @@ namespace System.Activities
             return (ICfActivityBuilder)m_StepBuilder;
         }
 
-        public ICfActivityBuilder Assign<TValue>(DelegateArgument p_To, Variable p_Value)
+        public ICfActivityBuilder Assign<TValue>(DelegateArgument p_To, Variable<TValue> p_Value)
         {
             FinishLastStep();
             m_StepBuilder = new SimpleActivityWrapper(new Assign
@@ -329,7 +327,7 @@ namespace System.Activities
             return (ICfActivityBuilder)m_StepBuilder;
         }
 
-        public ICfActivityBuilder Assign<TValue>(Expression<Func<ActivityContext, TValue>> p_To, Variable p_Value)
+        public ICfActivityBuilder Assign<TValue>(Expression<Func<ActivityContext, TValue>> p_To, Variable<TValue> p_Value)
         {
             FinishLastStep();
             m_StepBuilder = new SimpleActivityWrapper(new Assign
@@ -384,7 +382,7 @@ namespace System.Activities
             return (ICfActivityBuilder)m_StepBuilder;
         }
 
-        public ICfActivityBuilder Assign<TValue>(Variable p_To, Variable p_Value)
+        public ICfActivityBuilder Assign<TValue>(Variable p_To, Variable<TValue> p_Value)
         {
             FinishLastStep();
             m_StepBuilder = new SimpleActivityWrapper(new Assign
@@ -460,7 +458,7 @@ namespace System.Activities
             return (IInvokeMethodBuilder)m_StepBuilder;
         }
 
-        public IInvokeMethodBuilder InvokeMethod<TTarget>(Variable p_Target, string p_MethodName, params Argument[] p_Arguments)
+        public IInvokeMethodBuilder InvokeMethod<TTarget>(Variable<TTarget> p_Target, string p_MethodName, params Argument[] p_Arguments)
         {
             FinishLastStep();
             var l_Activity = new InvokeMethod

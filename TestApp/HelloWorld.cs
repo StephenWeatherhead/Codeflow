@@ -41,8 +41,8 @@ namespace TestApp
             p_Builder.InvokeMethod("Test", nameof(string.ToUpper), In(e => CultureInfo.CurrentCulture))
                 .Result<string>(l_MyVarString);
 
-            p_Builder.InvokeMethod(typeof(Console), nameof(Console.WriteLine), In<string>(l_MyVarString));
-            p_Builder.InvokeMethod(e => (new MyTestObject()), nameof(MyTestObject.WriteMessage), Lt("Literal"));
+            p_Builder.InvokeMethod(typeof(Console), nameof(Console.WriteLine), In(l_MyVarString));
+            p_Builder.InvokeMethod(e => (new MyTestObject()), nameof(MyTestObject.WriteMessage), In("Literal"));
         }
     }
 

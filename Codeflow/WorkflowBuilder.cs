@@ -60,6 +60,8 @@ namespace System.Activities
         /// <param name="p_Arguments"></param>
         /// <returns></returns>
         IInvokeMethodBuilder InvokeMethod(Type p_TargetType, string p_MethodName, params Argument[] p_Arguments);
+
+        ICfActivityBuilder InvokeDelegate(ActivityDelegate p_Delegate, params CfDelegateArgument[] p_DelegateArguments);
     }
 
     public interface ICfActivityBuilder
@@ -469,6 +471,19 @@ namespace System.Activities
             l_Activity.Parameters.AddRange(p_Arguments);
             m_StepBuilder = new InvokeMethodBuilder(l_Activity);
             return (IInvokeMethodBuilder)m_StepBuilder;
+        }
+
+        public ICfActivityBuilder InvokeDelegate(ActivityDelegate p_Delegate, params CfDelegateArgument[] p_DelegateArguments)
+        {
+            FinishLastStep();
+            InvokeDelegate l_InvokeDelegate = new InvokeDelegate();
+            l_InvokeDelegate.Delegate = p_Delegate;
+            foreach (var l_Argument in p_DelegateArguments)
+            {
+                l_InvokeDelegate.DelegateArguments.Add(l_Argument.Name, l_Argument.Argument);
+            }
+            m_StepBuilder = new SimpleActivityWrapper(l_InvokeDelegate);
+            return (ICfActivityBuilder)m_StepBuilder;
         }
     }
 }

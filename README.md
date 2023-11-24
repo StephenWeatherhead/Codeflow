@@ -5,7 +5,7 @@ An API to make code-based workflows easier to define in CoreWf. This work is lic
 ### Primitives
 - [x] Assign
 - [ ] Delay
-- [ ] InvokeDelegate
+- [x] InvokeDelegate
 - [x] InvokeMethod
 - [x] WriteLine
 

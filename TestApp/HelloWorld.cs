@@ -24,7 +24,14 @@ namespace TestApp
 
     public class HelloWorldCodeflow : Codeflow
     {
+        public HelloWorldCodeflow()
+        {
+            MyActivityAction = new ActivityAction<string>();
+            MyActivityAction.Argument = new DelegateInArgument<string>("Text");
+            MyActivityAction.Handler = new WriteLine() { Text = MyActivityAction.Argument };
+        }
         public InArgument<string> Name { get; set; }
+        public ActivityAction<string> MyActivityAction { get; set; }
         protected override void Build(IWorkflowBuilder p_Builder)
         {
             var l_MyVar = p_Builder.Variable<int>("l_MyVar");
@@ -41,8 +48,9 @@ namespace TestApp
             p_Builder.InvokeMethod("Test", nameof(string.ToUpper), In(e => CultureInfo.CurrentCulture))
                 .Result<string>(l_MyVarString);
 
-            p_Builder.InvokeMethod(typeof(Console), nameof(Console.WriteLine), In(l_MyVarString));
-            p_Builder.InvokeMethod(e => (new MyTestObject()), nameof(MyTestObject.WriteMessage), In("Literal"));
+            p_Builder.InvokeMethod(typeof(Console), "WriteLine", In(l_MyVarString));
+            p_Builder.InvokeMethod(e => (new MyTestObject()), "WriteMessage", In("Literal"));
+            p_Builder.InvokeDelegate(MyActivityAction, Del("Argument", In("This is my Delegate Invoke")));
         }
     }
 

@@ -66,6 +66,10 @@ namespace System.Activities
         {
             return new OutArgument<TValue>(p_Value);
         }
+        protected CfDelegateArgument Del(string p_Name, Argument p_Argument)
+        {
+            return new CfDelegateArgument { Name = p_Name, Argument = p_Argument };
+        }
     }
 
     public abstract class Codeflow<T> : Activity<T>

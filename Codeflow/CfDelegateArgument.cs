@@ -9,6 +9,6 @@ namespace System.Activities
     public class CfDelegateArgument
     {
         public string Name { get; set; }
-        public Argument Argument
+        public Argument Argument { get; set; }
     }
 }

@@ -66,6 +66,7 @@ namespace System.Activities
         {
             return new OutArgument<TValue>(p_Value);
         }
+
         protected CfDelegateArgument Del(string p_Name, Argument p_Argument)
         {
             return new CfDelegateArgument { Name = p_Name, Argument = p_Argument };
@@ -129,6 +130,11 @@ namespace System.Activities
         protected OutArgument<TValue> Out<TValue>(Variable p_Value)
         {
             return new OutArgument<TValue>(p_Value);
+        }
+
+        protected CfDelegateArgument Del(string p_Name, Argument p_Argument)
+        {
+            return new CfDelegateArgument { Name = p_Name, Argument = p_Argument };
         }
     }
 }

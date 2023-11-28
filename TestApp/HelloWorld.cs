@@ -41,7 +41,17 @@ namespace TestApp
                 .DisplayName("Assign Random Integer");
 
             p_Builder.WriteLine(e => $"Hello {Name.Get(e)}! And MyVar is :");
-
+            p_Builder.Delay(TimeSpan.FromSeconds(1));
+            p_Builder.WriteLine("1");
+            p_Builder.Delay(TimeSpan.FromSeconds(1));
+            p_Builder.WriteLine("2");
+            p_Builder.Delay(TimeSpan.FromSeconds(1));
+            p_Builder.WriteLine("3");
+            p_Builder.Delay(TimeSpan.FromSeconds(1));
+            p_Builder.WriteLine("4");
+            p_Builder.Delay(TimeSpan.FromSeconds(1));
+            p_Builder.WriteLine("5");
+            p_Builder.Delay(TimeSpan.FromMilliseconds(500));
             p_Builder.Assign(l_MyVarString, e => l_MyVar.Get(e).ToString());
             p_Builder.WriteLine(l_MyVarString);
 

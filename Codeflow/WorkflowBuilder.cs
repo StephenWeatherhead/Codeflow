@@ -62,6 +62,12 @@ namespace System.Activities
         IInvokeMethodBuilder InvokeMethod(Type p_TargetType, string p_MethodName, params Argument[] p_Arguments);
 
         ICfActivityBuilder InvokeDelegate(ActivityDelegate p_Delegate, params CfDelegateArgument[] p_DelegateArguments);
+
+        ICfActivityBuilder Delay(TimeSpan p_Timespan);
+        ICfActivityBuilder Delay(Expression<Func<ActivityContext, TimeSpan>> p_Timespan);
+        ICfActivityBuilder Delay(Activity<TimeSpan> p_Timespan);
+        ICfActivityBuilder Delay(DelegateArgument p_Timespan);
+        ICfActivityBuilder Delay(Variable<TimeSpan> p_Timespan);
     }
 
     public interface ICfActivityBuilder
@@ -483,6 +489,66 @@ namespace System.Activities
                 l_InvokeDelegate.DelegateArguments.Add(l_Argument.Name, l_Argument.Argument);
             }
             m_StepBuilder = new SimpleActivityWrapper(l_InvokeDelegate);
+            return (ICfActivityBuilder)m_StepBuilder;
+        }
+
+        public ICfActivityBuilder Delay(TimeSpan p_Timespan)
+        {
+            FinishLastStep();
+            var l_Activity = new Delay
+            {
+                Duration = new InArgument<TimeSpan>(p_Timespan),
+
+            };
+            m_StepBuilder = new SimpleActivityWrapper(l_Activity);
+            return (ICfActivityBuilder)m_StepBuilder;
+        }
+
+        public ICfActivityBuilder Delay(Expression<Func<ActivityContext, TimeSpan>> p_Timespan)
+        {
+            FinishLastStep();
+            var l_Activity = new Delay
+            {
+                Duration = new InArgument<TimeSpan>(p_Timespan),
+
+            };
+            m_StepBuilder = new SimpleActivityWrapper(l_Activity);
+            return (ICfActivityBuilder)m_StepBuilder;
+        }
+
+        public ICfActivityBuilder Delay(Activity<TimeSpan> p_Timespan)
+        {
+            FinishLastStep();
+            var l_Activity = new Delay
+            {
+                Duration = new InArgument<TimeSpan>(p_Timespan),
+
+            };
+            m_StepBuilder = new SimpleActivityWrapper(l_Activity);
+            return (ICfActivityBuilder)m_StepBuilder;
+        }
+
+        public ICfActivityBuilder Delay(DelegateArgument p_Timespan)
+        {
+            FinishLastStep();
+            var l_Activity = new Delay
+            {
+                Duration = new InArgument<TimeSpan>(p_Timespan),
+
+            };
+            m_StepBuilder = new SimpleActivityWrapper(l_Activity);
+            return (ICfActivityBuilder)m_StepBuilder;
+        }
+
+        public ICfActivityBuilder Delay(Variable<TimeSpan> p_Timespan)
+        {
+            FinishLastStep();
+            var l_Activity = new Delay
+            {
+                Duration = new InArgument<TimeSpan>(p_Timespan),
+
+            };
+            m_StepBuilder = new SimpleActivityWrapper(l_Activity);
             return (ICfActivityBuilder)m_StepBuilder;
         }
     }

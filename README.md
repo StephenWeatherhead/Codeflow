@@ -4,7 +4,7 @@ An API to make code-based workflows easier to define in CoreWf. This work is lic
 ## Checklist
 ### Primitives
 - [x] Assign
-- [ ] Delay
+- [x] Delay
 - [x] InvokeDelegate
 - [x] InvokeMethod
 - [x] WriteLine

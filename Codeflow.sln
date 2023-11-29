@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeflow", "Codeflow\Codeflow.csproj", "{ACAEBAD3-7F74-425C-A493-0C8EF3B8BA6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeflow", "Codeflow\Codeflow.csproj", "{ACAEBAD3-7F74-425C-A493-0C8EF3B8BA6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{E6B58568-6FE1-418D-81C0-B3CF3FE8F419}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApp", "TestApp\TestApp.csproj", "{E6B58568-6FE1-418D-81C0-B3CF3FE8F419}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeflow.Tests", "Codeflow.Tests\Codeflow.Tests.csproj", "{61E4F524-B657-46EC-A0D5-34096E646A3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E6B58568-6FE1-418D-81C0-B3CF3FE8F419}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6B58568-6FE1-418D-81C0-B3CF3FE8F419}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6B58568-6FE1-418D-81C0-B3CF3FE8F419}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61E4F524-B657-46EC-A0D5-34096E646A3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61E4F524-B657-46EC-A0D5-34096E646A3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61E4F524-B657-46EC-A0D5-34096E646A3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61E4F524-B657-46EC-A0D5-34096E646A3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

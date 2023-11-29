@@ -5,9 +5,11 @@ using System.Activities.Statements;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
+[assembly: InternalsVisibleTo("Codeflow.Tests")]
 namespace System.Activities
 {
     public interface IWorkflowBuilder

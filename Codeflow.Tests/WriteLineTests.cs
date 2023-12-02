@@ -52,5 +52,21 @@ namespace System.Activities
             Assert.Single(l_Sequence.Activities);
             Assert.NotNull(l_WriteLine.Text);
         }
+        [Fact]
+        public void WriteLineWithDelegateArgument()
+        {
+            // arrange
+            DelegateInArgument<string> l_String = new DelegateInArgument<string>("l_String");
+            WorkflowBuilder l_Builder = new WorkflowBuilder();
+            l_Builder.WriteLine(l_String);
+
+            // act
+            Sequence l_Sequence = (Sequence)l_Builder.GetActivity();
+            WriteLine l_WriteLine = (WriteLine)l_Sequence.Activities.First();
+
+            // assert
+            Assert.Single(l_Sequence.Activities);
+            Assert.NotNull(l_WriteLine.Text);
+        }
     }
 }

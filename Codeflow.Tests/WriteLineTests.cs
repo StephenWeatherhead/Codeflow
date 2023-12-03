@@ -68,5 +68,21 @@ namespace System.Activities
             Assert.Single(l_Sequence.Activities);
             Assert.NotNull(l_WriteLine.Text);
         }
+        [Fact]
+        public void WriteLineWithVariable()
+        {
+            // arrange
+            Variable<string> l_MyVariable = new Variable<string>("MyVariable");
+            WorkflowBuilder l_Builder = new WorkflowBuilder();
+            l_Builder.WriteLine(l_MyVariable);
+
+            // act
+            Sequence l_Sequence = (Sequence)l_Builder.GetActivity();
+            WriteLine l_WriteLine = (WriteLine)l_Sequence.Activities.First();
+
+            // assert
+            Assert.Single(l_Sequence.Activities);
+            Assert.NotNull(l_WriteLine.Text);
+        }
     }
 }

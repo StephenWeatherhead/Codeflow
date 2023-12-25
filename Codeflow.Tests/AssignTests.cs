@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Activities.Expressions;
 using System.Activities.Statements;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,23 @@ namespace System.Activities
             WorkflowBuilder l_Builder = new WorkflowBuilder();
             Variable l_Variable = l_Builder.Variable<int>("Test");
             l_Builder.Assign<int>(l_Variable, e => Random.Shared.Next());
+
+            // act
+            Sequence l_Sequence = (Sequence)l_Builder.GetActivity();
+            Assign l_Assign = (Assign)l_Sequence.Activities.First();
+
+            // assert
+            Assert.NotNull(l_Assign.To);
+            Assert.NotNull(l_Assign.Value);
+        }
+
+        [Fact]
+        public void AssignVariableWithActivity()
+        {
+            // arrange
+            WorkflowBuilder l_Builder = new WorkflowBuilder();
+            Variable l_Variable = l_Builder.Variable<int>("Test");
+            l_Builder.Assign<int>(l_Variable, new Literal<int>(123));
 
             // act
             Sequence l_Sequence = (Sequence)l_Builder.GetActivity();

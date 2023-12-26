@@ -60,5 +60,23 @@ namespace System.Activities
             Assert.NotNull(l_Assign.To);
             Assert.NotNull(l_Assign.Value);
         }
+
+        [Fact]
+        public void AssignVariableWithDelegateArgument()
+        {
+            // arrange
+            DelegateInArgument<string> l_String = new DelegateInArgument<string>("l_String");
+            WorkflowBuilder l_Builder = new WorkflowBuilder();
+            Variable l_Variable = l_Builder.Variable<string>("Test");
+            l_Builder.Assign<string>(l_Variable, l_String);
+
+            // act
+            Sequence l_Sequence = (Sequence)l_Builder.GetActivity();
+            Assign l_Assign = (Assign)l_Sequence.Activities.First();
+
+            // assert
+            Assert.NotNull(l_Assign.To);
+            Assert.NotNull(l_Assign.Value);
+        }
     }
 }

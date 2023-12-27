@@ -78,5 +78,23 @@ namespace System.Activities
             Assert.NotNull(l_Assign.To);
             Assert.NotNull(l_Assign.Value);
         }
+
+        [Fact]
+        public void AssignVariableWithVariable()
+        {
+            // arrange
+            WorkflowBuilder l_Builder = new WorkflowBuilder();
+            Variable l_Variable = l_Builder.Variable<string>("Test");
+            Variable l_Variable2 = l_Builder.Variable<string>("MyVar2");
+            l_Builder.Assign<string>(l_Variable, l_Variable2);
+
+            // act
+            Sequence l_Sequence = (Sequence)l_Builder.GetActivity();
+            Assign l_Assign = (Assign)l_Sequence.Activities.First();
+
+            // assert
+            Assert.NotNull(l_Assign.To);
+            Assert.NotNull(l_Assign.Value);
+        }
     }
 }

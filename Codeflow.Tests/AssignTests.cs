@@ -147,5 +147,23 @@ namespace System.Activities
             Assert.NotNull(l_Assign.To);
             Assert.NotNull(l_Assign.Value);
         }
+
+        [Fact]
+        public void AssignExpressionWithDelegate()
+        {
+            // arrange
+            WorkflowBuilder l_Builder = new WorkflowBuilder();
+            DelegateInArgument<string> l_String = new DelegateInArgument<string>("l_String");
+            Variable<Exception> l_Variable = l_Builder.Variable<Exception>("Test", e => new Exception());
+            l_Builder.Assign<string>(e => l_Variable.Get(e).Message, l_String);
+
+            // act
+            Sequence l_Sequence = (Sequence)l_Builder.GetActivity();
+            Assign l_Assign = (Assign)l_Sequence.Activities.First();
+
+            // assert
+            Assert.NotNull(l_Assign.To);
+            Assert.NotNull(l_Assign.Value);
+        }
     }
 }

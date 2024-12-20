@@ -10,18 +10,12 @@ The proposed solution is something like this:
 
 Using this method, we don't need to reference Workflow Foundation, third-party scripting engines, or third-party workflow engines.
 
-## Runtime Checklist
-### Primitives
-- [ ] Assign
-- [ ] Delay
-- [ ] InvokeDelegate
-- [ ] InvokeMethod
-- [ ] WriteLine
+## General Checklist
+- [ ] Visual Basic proof-of-concept - can VB code actually be called from C#? Develop a method that takes a visual basic expression and a list of parameters/types and generates a Visual Basic method from it.
+- [ ] Simple workflow proof-of-concept - convert a simple WriteLine workflow to code
+- [ ] CodeActivity proof-of-concept
 
-### Error Handling
-- [ ] Rethrow
-- [ ] Throw
-- [ ] TryCatch
+## Runtime Checklist
 
 ### Control Flow
 - [ ] DoWhile
@@ -30,5 +24,35 @@ Using this method, we don't need to reference Workflow Foundation, third-party s
 - [ ] Parallel
 - [ ] ParallelForEach
 - [ ] Pick
+- [ ] Sequence
 - [ ] Switch
 - [ ] While
+
+### Flowchart
+- [ ] Flowchart
+- [ ] FlowDecision
+- [ ] FlowSwitch
+
+### Runtime
+- [ ] TerminateWorkflow
+
+### Primitives
+- [ ] Assign
+- [ ] Delay
+- [ ] InvokeDelegate
+- [ ] InvokeMethod
+- [ ] WriteLine
+
+### Collection
+- [ ] AddToCollection
+- [ ] ClearCollection
+- [ ] ExistsInCollection
+- [ ] RemoveFromCollection
+
+### Error Handling
+- [ ] Rethrow
+- [ ] Throw
+- [ ] TryCatch
+
+
+

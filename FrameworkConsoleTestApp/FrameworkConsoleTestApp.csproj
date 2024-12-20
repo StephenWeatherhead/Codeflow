@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CD9EE9DE-B571-4056-947E-3A3D8BB92D28}</ProjectGuid>
+    <ProjectGuid>{415D4A93-F124-486A-8860-ABF726079E85}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>TestFramework</RootNamespace>
-    <AssemblyName>TestFramework</AssemblyName>
+    <RootNamespace>FrameworkConsoleTestApp</RootNamespace>
+    <AssemblyName>FrameworkConsoleTestApp</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -36,7 +36,6 @@
     <Reference Include="System" />
     <Reference Include="System.Activities" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />

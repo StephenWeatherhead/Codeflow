@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.IO;
+using System.Text;
 using System.Xaml;
 
 namespace TestWalker
@@ -13,7 +14,7 @@ namespace TestWalker
                 int spaces = 0;
                 Stack<string> objectStack = new Stack<string>();
                 Stack<string> memberStack = new Stack<string>();
-                while(xmlReader.Read())
+                while (xmlReader.Read())
                 {
                     switch (xmlReader.NodeType)
                     {

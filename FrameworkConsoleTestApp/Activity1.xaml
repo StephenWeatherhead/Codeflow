@@ -1,28 +1,69 @@
-﻿<Activity x:Class="FrameworkConsoleTestApp.Activity1" 
-          xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" 
-          mc:Ignorable="sap2010"
-          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-          sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#"
-          xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
-          xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"   
-          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"> 
-    <TextExpression.NamespacesForImplementation>
-        <sco:Collection x:TypeArguments="x:String">
-            <x:String>System</x:String>
-            <x:String>System.Collections.Generic</x:String>
-            <x:String>System.Data</x:String>
-            <x:String>System.Linq</x:String>
-            <x:String>System.Text</x:String>
-        </sco:Collection>
-    </TextExpression.NamespacesForImplementation>
-    <TextExpression.ReferencesForImplementation>
-        <sco:Collection x:TypeArguments="AssemblyReference">
-            <AssemblyReference>mscorlib</AssemblyReference>
-            <AssemblyReference>System</AssemblyReference>
-            <AssemblyReference>System.Core</AssemblyReference>
-            <AssemblyReference>System.Data</AssemblyReference>
-            <AssemblyReference>System.ServiceModel</AssemblyReference>
-            <AssemblyReference>System.Xml</AssemblyReference>
-        </sco:Collection>
-    </TextExpression.ReferencesForImplementation>
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="FrameworkConsoleTestApp.Activity1" this:Activity1.hoursWorked="7.5" this:Activity1.payRate="10" this:Activity1.employeeName="Jeffrey" this:Activity1.myList="[New List(Of String)]" this:Activity1.myDictionary="[New Dictionary(Of String, Int32)]"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:this="clr-namespace:FrameworkConsoleTestApp"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="hoursWorked" Type="InArgument(x:Double)" />
+    <x:Property Name="payRate" Type="InArgument(x:Double)" />
+    <x:Property Name="employeeName" Type="InArgument(x:String)" />
+    <x:Property Name="myList" Type="InArgument(scg:List(x:String))" />
+    <x:Property Name="myDictionary" Type="InArgument(scg:Dictionary(x:String, x:Int32))" />
+  </x:Members>
+  <sap2010:WorkflowViewState.IdRef>FrameworkConsoleTestApp.Activity1_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Double" Name="totalPay" />
+    </Sequence.Variables>
+    <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Double">[totalPay]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Double">[hoursWorked * payRate]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[employeeName + &quot; earned £&quot; + totalPay.ToString() + &quot; in total.&quot;]" />
+    <sads:DebugSymbol.Symbol>d0tDOlxVc2Vyc1xzdGVwaFxzb3VyY2VccmVwb3NcQ29kZWZsb3dcRnJhbWV3b3JrQ29uc29sZVRlc3RBcHBcQWN0aXZpdHkxLnhhbWwLAYQCAacCAQYBcgF2AQUB0AEB5gEBBAGwAQG4AQEDAY8BAZIBAQIoAzYOAgEBLAUzDgIBBjQFNJ0BAgECMTAxRwIBCS4xLjsCAQc0QzSaAQIBAw==</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="242,61" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="264,285">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FrameworkConsoleTestApp.Activity1_1" sap:VirtualizedContainerService.HintSize="304,365" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

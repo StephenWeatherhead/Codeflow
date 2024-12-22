@@ -6,7 +6,7 @@ namespace Codeflow.CodeGeneration
     {
         public static string GenerateVisualBasicMethod(string name, XamlType returnType, Dictionary<string, XamlType> parameters, string expression)
         {
-            throw new NotImplementedException();
+            return $"Public Shared Function {name}({string.Join(", ", parameters.Select(p => $"{p.Key} As {GetVisualBasicTypeName(p.Value)}"))}) As {GetVisualBasicTypeName(returnType)}\r\n    Return {expression}\r\nEnd Function";
         }
 
         public static string GetVisualBasicTypeName(XamlType type)

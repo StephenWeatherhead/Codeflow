@@ -8,18 +8,17 @@ namespace VisualBasicTestApp
     {
         static void Main(string[] args)
         {
-            // demonstrates that a visual basic library can be called from C#
-            MyTestClass.PrintMessage("HELLO WORLD!!!");
-            // print static method
-            //Console.WriteLine("Now let's print the method based on the expression: ");
-            //CodeflowUtils.GenerateVisualBasicMethod("GetTotalPayMessage", typeof(string), )
-
-            // run 
-            //Console.WriteLine("And running that method results in:");
-            //Console.WriteLine(MyTestClass.GetTotalPayMessage("Stephen", 100.50));
-            XamlType myType = new XamlType(typeof(Dictionary<string, List<string[]>>), new XamlSchemaContext());
-            // generic type argument
-            Console.WriteLine(CodeflowUtils.GetVisualBasicTypeName(myType));
+            // let's print a vb method
+            var integerType = new XamlType(typeof(int), new XamlSchemaContext());
+            string method = CodeflowUtils.GenerateVisualBasicMethod("CalculateSum", integerType, 
+                new Dictionary<string, XamlType>
+                {
+                    { "numberA", integerType },
+                    { "numberB", integerType }
+                }, "numberA + numberB");
+            Console.WriteLine(method);
+            // now let's use the generated method
+            Console.WriteLine("Using the above method 3 + 4 = " + MyTestClass.CalculateSum(3, 4));
             Console.ReadLine();
         }
     }

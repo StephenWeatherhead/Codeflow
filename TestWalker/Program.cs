@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 using System.Xaml;
+using System.Xaml.Schema;
 
 namespace TestWalker
 {
@@ -14,10 +15,17 @@ namespace TestWalker
                 int spaces = 0;
                 Stack<string> objectStack = new Stack<string>();
                 Stack<string> memberStack = new Stack<string>();
+                List<NamespaceDeclaration> namespaces = new List<NamespaceDeclaration>();
                 while (xmlReader.Read())
                 {
                     switch (xmlReader.NodeType)
                     {
+                        case XamlNodeType.NamespaceDeclaration:
+                            if(xmlReader.Namespace != null)
+                            {
+                                namespaces.Add(xmlReader.Namespace);
+                            }
+                            break;
                         case XamlNodeType.StartObject:
                             Console.WriteLine(GetSpaces(spaces) + "<" + xmlReader.Type.Name + ">");
                             objectStack.Push(xmlReader.Type.Name);
@@ -30,6 +38,14 @@ namespace TestWalker
                             break;
                         case XamlNodeType.Value:
                             Console.WriteLine(GetSpaces(spaces) + xmlReader.Value?.ToString());
+                            if(memberStack.Peek() == "Type")
+                            {
+                                XamlTypeName xamlTypeName = XamlTypeName.Parse((string)xmlReader.Value, new DummyResolver(namespaces));
+                                XamlType xamlType = GetXamlType(xamlTypeName, xmlReader.SchemaContext);
+                                //XamlType xamlType = new XamlType(xamlTypeName.Namespace, xamlTypeName.Name, xamlTypeName.TypeArguments.Select(tn => new XamlType(tn.Namespace, tn.Name, typeArguments)), xmlReader.SchemaContext);
+                            }
+                            break;
+                        case XamlNodeType.GetObject:
                             break;
                         case XamlNodeType.EndMember:
                             string endMember = memberStack.Pop();
@@ -53,6 +69,29 @@ namespace TestWalker
                 sb.Append("    ");
             }
             return sb.ToString();
+        }
+
+        private static XamlType GetXamlType(XamlTypeName xamlTypeName, XamlSchemaContext context)
+        {
+            return new XamlType(xamlTypeName.Namespace, xamlTypeName.Name, 
+                xamlTypeName.TypeArguments.Select(tn => GetXamlType(tn, context)).ToList(), 
+                context);
+        }
+
+    }
+
+    internal class DummyResolver(List<NamespaceDeclaration> namespaces) : IXamlNamespaceResolver
+    {
+        public string GetNamespace(string prefix)
+        {
+            return namespaces.FirstOrDefault(space => 
+            string.Equals(space.Prefix, prefix, StringComparison.InvariantCultureIgnoreCase))
+                .Namespace;
+        }
+
+        public IEnumerable<NamespaceDeclaration> GetNamespacePrefixes()
+        {
+            return namespaces;
         }
     }
 }

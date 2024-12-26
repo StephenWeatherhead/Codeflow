@@ -15,46 +15,100 @@ namespace VisualBasicTestApp
             Console.WriteLine("In our VB proof of concept, we're targeting the WriteLine Text property");
             Console.WriteLine("so our return type will be String. The challenge is detecting the ");
             Console.WriteLine("parameter names, parameter types, and the expression itself.");
-            
             using (XamlXmlReader xmlReader = new XamlXmlReader(new StringReader(xamlString)))
             {
-                Stack<string> objectStack = new Stack<string>();
-                Stack<string> memberStack = new Stack<string>();
-                string lastValue = null;
+                MyXamlObject? currentObject = null;
+                MyXamlMember? currentMember = null;
+                Stack<MyXamlObject> objectStack = new Stack<MyXamlObject>();
+                Stack<MyXamlMember> memberStack = new Stack<MyXamlMember>();
                 while (xmlReader.Read())
                 {
-                    
                     switch (xmlReader.NodeType)
                     {
                         case XamlNodeType.StartObject:
-                            objectStack.Push(xmlReader.Type.Name);
-                            break;
-                        case XamlNodeType.StartMember:
-                            string memberName = xmlReader.Member == XamlLanguage.UnknownContent ? "Content" : xmlReader.Member.Name;
-                            memberStack.Push(memberName);
-                            break;
-                        case XamlNodeType.Value:
-                            
-                            break;
-                        case XamlNodeType.EndMember:
-                            string endMember = memberStack.Pop();
+                            currentObject = new MyXamlObject();
+                            currentObject.XamlType = xmlReader.Type;
                             break;
                         case XamlNodeType.EndObject:
-                            string endObject = objectStack.Pop();
+                            if(currentMember != null)
+                            {
+                                currentMember.Content.Add(currentObject);
+                                currentObject = null;
+                            }
+                            break;
+                        case XamlNodeType.StartMember:
+                            // push member and object on to stack
+                            objectStack.Push(currentObject);
+                            currentObject = null;
+                            if (currentMember != null)
+                            {
+                                memberStack.Push(currentMember);
+                                currentMember = null;
+                            }
+                            currentMember = new MyXamlMember();
+                            if(xmlReader.Member == XamlLanguage.UnknownContent)
+                            {
+                                currentMember.IsContent = true;
+                            }
+                            else
+                            {
+                                currentMember.Name = xmlReader.Member.Name;
+                            }
+                            break;
+                        case XamlNodeType.EndMember:
+                            currentObject = objectStack.Pop();
+                            currentObject.Members.Add(currentMember);
+                            currentMember = null;
+                            if(memberStack.Any())
+                            {
+                                currentMember = memberStack.Pop();
+                            }
+                            break;
+                        case XamlNodeType.Value:
+                            currentMember.Value = xmlReader.Value.ToString();
                             break;
                     }
                 }
+                var contentMember = currentObject.Members.First(m => m.IsContent);
+                var sequenceActivity = contentMember.Content.First();
+                var writeLine = sequenceActivity.Members
+                    .First(m => m.IsContent)
+                    .Content.First(xo => xo.XamlType.Name == "WriteLine");
+                var writeLineText = writeLine.Members.First(m => m.Name == "Text").Value;
+                Console.WriteLine("The WriteLine expression is : " + writeLineText);
             }
-            var integerType = new XamlType(typeof(int), new XamlSchemaContext());
-            string method = CodeflowUtils.GenerateVisualBasicMethod("CalculateSum", integerType, 
-                new Dictionary<string, XamlType>
-                {
-                    { "numberA", integerType },
-                    { "numberB", integerType }
-                }, "numberA + numberB");
-            Console.WriteLine(method);
-            
             Console.ReadLine();
+        }
+    }
+
+    public class MyXamlObject
+    {
+        public MyXamlObject()
+        {
+            Members = new List<MyXamlMember>();
+        }
+        public XamlType? XamlType { get; set; }
+        public List<MyXamlMember> Members { get; set; }
+
+        public override string ToString()
+        {
+            return XamlType?.Name == null ? "Object" : XamlType.Name;
+        }
+    }
+    public class MyXamlMember
+    {
+        public MyXamlMember()
+        {
+            Content = new List<MyXamlObject>();
+        }
+        public string? Name { get; set; }
+        public bool IsContent { get; set; }
+        public string? Value { get; set; }
+        public List<MyXamlObject> Content { get; set; }
+
+        public override string ToString()
+        {
+            return IsContent ? "_Content" : Name;
         }
     }
 }

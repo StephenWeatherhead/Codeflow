@@ -1,4 +1,4 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="FrameworkConsoleTestApp.Activity1" this:Activity1.hoursWorked="7.5" this:Activity1.payRate="10" this:Activity1.employeeName="Jeffrey" this:Activity1.myList="[New List(Of String)]" this:Activity1.myDictionary="[New Dictionary(Of String, Int32)]"
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="FrameworkConsoleTestApp.Activity1" this:Activity1.hoursWorked="7.5" this:Activity1.payRate="10" this:Activity1.employeeName="Jeffrey"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
@@ -12,8 +12,6 @@
     <x:Property Name="hoursWorked" Type="InArgument(x:Double)" />
     <x:Property Name="payRate" Type="InArgument(x:Double)" />
     <x:Property Name="employeeName" Type="InArgument(x:String)" />
-    <x:Property Name="myList" Type="InArgument(scg:List(x:String))" />
-    <x:Property Name="myDictionary" Type="InArgument(scg:Dictionary(x:String, x:Int32))" />
   </x:Members>
   <sap2010:WorkflowViewState.IdRef>FrameworkConsoleTestApp.Activity1_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
@@ -50,7 +48,7 @@
       </Assign.Value>
     </Assign>
     <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[employeeName + &quot; earned £&quot; + totalPay.ToString() + &quot; in total.&quot;]" />
-    <sads:DebugSymbol.Symbol>d0tDOlxVc2Vyc1xzdGVwaFxzb3VyY2VccmVwb3NcQ29kZWZsb3dcRnJhbWV3b3JrQ29uc29sZVRlc3RBcHBcQWN0aXZpdHkxLnhhbWwLAYQCAacCAQYBcgF2AQUB0AEB5gEBBAGwAQG4AQEDAY8BAZIBAQIoAzYOAgEBLAUzDgIBBjQFNJ0BAgECMTAxRwIBCS4xLjsCAQc0QzSaAQIBAw==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0tDOlxVc2Vyc1xzdGVwaFxzb3VyY2VccmVwb3NcQ29kZWZsb3dcRnJhbWV3b3JrQ29uc29sZVRlc3RBcHBcQWN0aXZpdHkxLnhhbWwJAXIBdgEEAbABAbgBAQMBjwEBkgEBAiYDNA4CAQEqBTEOAgEGMgUynQECAQIvMC9HAgEJLDEsOwIBBzJDMpoBAgED</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>

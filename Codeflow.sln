@@ -5,15 +5,17 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWalker", "TestWalker\TestWalker.csproj", "{D96D08A1-B3D7-412F-9854-B3036438AA36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeflow.Runtime", "Codeflow.Runtime\Codeflow.Runtime.csproj", "{BBB3CF54-A5C7-49C7-9526-3B2059B62650}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeflow.Runtime", "Codeflow.Runtime\Codeflow.Runtime.csproj", "{BBB3CF54-A5C7-49C7-9526-3B2059B62650}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkConsoleTestApp", "FrameworkConsoleTestApp\FrameworkConsoleTestApp.csproj", "{415D4A93-F124-486A-8860-ABF726079E85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualBasicProofOfConcept", "VisualBasicTestApp\VisualBasicProofOfConcept.csproj", "{3593AF16-C50A-4862-8439-27EF9D48AF91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualBasicTestApp", "VisualBasicTestApp\VisualBasicTestApp.csproj", "{3593AF16-C50A-4862-8439-27EF9D48AF91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeflow.CodeGeneration", "Codeflow.CodeGeneration\Codeflow.CodeGeneration.csproj", "{33D35EF6-4CC2-4292-AF69-52A9F8181DED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeflow.CodeGeneration", "Codeflow.CodeGeneration\Codeflow.CodeGeneration.csproj", "{33D35EF6-4CC2-4292-AF69-52A9F8181DED}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "VisualBasicPoCTestLibrary", "VisualBasicTestLibrary\VisualBasicPoCTestLibrary.vbproj", "{A73E9333-084F-4315-96CC-DF137FD66075}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "VisualBasicTestLibrary", "VisualBasicTestLibrary\VisualBasicTestLibrary.vbproj", "{A73E9333-084F-4315-96CC-DF137FD66075}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeflow.TestResources", "Codeflow.TestResources\Codeflow.TestResources.csproj", "{89A12B22-924E-4213-A0CE-D4174AEC7540}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestApps", "TestApps", "{9E05B008-4233-47A1-AFB3-BD536ED1B4AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +31,6 @@ Global
 		{BBB3CF54-A5C7-49C7-9526-3B2059B62650}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBB3CF54-A5C7-49C7-9526-3B2059B62650}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBB3CF54-A5C7-49C7-9526-3B2059B62650}.Release|Any CPU.Build.0 = Release|Any CPU
-		{415D4A93-F124-486A-8860-ABF726079E85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{415D4A93-F124-486A-8860-ABF726079E85}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{415D4A93-F124-486A-8860-ABF726079E85}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{415D4A93-F124-486A-8860-ABF726079E85}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3593AF16-C50A-4862-8439-27EF9D48AF91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3593AF16-C50A-4862-8439-27EF9D48AF91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3593AF16-C50A-4862-8439-27EF9D48AF91}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,9 +43,19 @@ Global
 		{A73E9333-084F-4315-96CC-DF137FD66075}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A73E9333-084F-4315-96CC-DF137FD66075}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A73E9333-084F-4315-96CC-DF137FD66075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89A12B22-924E-4213-A0CE-D4174AEC7540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89A12B22-924E-4213-A0CE-D4174AEC7540}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89A12B22-924E-4213-A0CE-D4174AEC7540}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89A12B22-924E-4213-A0CE-D4174AEC7540}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D96D08A1-B3D7-412F-9854-B3036438AA36} = {9E05B008-4233-47A1-AFB3-BD536ED1B4AF}
+		{3593AF16-C50A-4862-8439-27EF9D48AF91} = {9E05B008-4233-47A1-AFB3-BD536ED1B4AF}
+		{A73E9333-084F-4315-96CC-DF137FD66075} = {9E05B008-4233-47A1-AFB3-BD536ED1B4AF}
+		{89A12B22-924E-4213-A0CE-D4174AEC7540} = {9E05B008-4233-47A1-AFB3-BD536ED1B4AF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {34746F13-F89C-42E8-BA10-4F8F93A5A426}

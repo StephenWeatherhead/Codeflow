@@ -1,8 +1,13 @@
-﻿using System.Xaml.Schema;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Xaml;
-namespace Codeflow.CodeGeneration
+
+namespace VisualBasicProofOfConcept
 {
-    public class CodeflowUtils
+    internal class VBHelper
     {
         public static string GenerateVisualBasicMethod(string name, XamlType returnType, Dictionary<string, XamlType> parameters, string expression)
         {
@@ -11,7 +16,7 @@ namespace Codeflow.CodeGeneration
 
         public static string GetVisualBasicTypeName(XamlType type)
         {
-            if(type.IsArray)
+            if (type.IsArray)
             {
                 return $"{GetVisualBasicTypeName(type.ItemType)}()";
             }

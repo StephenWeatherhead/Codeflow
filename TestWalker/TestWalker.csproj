@@ -8,4 +8,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Codeflow.TestResources\Codeflow.TestResources.csproj" />
+  </ItemGroup>
+
 </Project>

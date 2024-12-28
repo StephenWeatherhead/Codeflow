@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Codeflow.CodeGeneration\Codeflow.CodeGeneration.csproj" />
-    <ProjectReference Include="..\VisualBasicTestLibrary\VisualBasicTestLibrary.vbproj" />
+    <ProjectReference Include="..\Codeflow.TestResources\Codeflow.TestResources.csproj" />
+    <ProjectReference Include="..\VisualBasicTestLibrary\VisualBasicPoCTestLibrary.vbproj" />
   </ItemGroup>
 
 </Project>

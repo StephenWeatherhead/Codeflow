@@ -1,4 +1,4 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="FrameworkConsoleTestApp.Activity1" this:Activity1.hoursWorked="7.5" this:Activity1.payRate="10" this:Activity1.employeeName="Jeffrey"
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Codeflow.FrameworkTestResources.PrintTotalPay" this:PrintTotalPay.hoursWorked="7.5" this:PrintTotalPay.payRate="10" this:PrintTotalPay.employeeName="Jeffrey"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
@@ -6,7 +6,7 @@
  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
- xmlns:this="clr-namespace:FrameworkConsoleTestApp"
+ xmlns:this="clr-namespace:Codeflow.FrameworkTestResources"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="hoursWorked" Type="InArgument(x:Double)" />
@@ -47,8 +47,8 @@
         <InArgument x:TypeArguments="x:Double">[hoursWorked * payRate]</InArgument>
       </Assign.Value>
     </Assign>
-    <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[employeeName + &quot; earned £&quot; + totalPay.ToString() + &quot; in total.&quot;]" />
-    <sads:DebugSymbol.Symbol>d0tDOlxVc2Vyc1xzdGVwaFxzb3VyY2VccmVwb3NcQ29kZWZsb3dcRnJhbWV3b3JrQ29uc29sZVRlc3RBcHBcQWN0aXZpdHkxLnhhbWwJAXIBdgEEAbABAbgBAQMBjwEBkgEBAiYDNA4CAQEqBTEOAgEGMgUynQECAQIvMC9HAgEJLDEsOwIBBzJDMpoBAgED</sads:DebugSymbol.Symbol>
+    <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[String.Format(&quot;{0} earned {1:C} in total&quot;, employeeName, totalPay)]" />
+    <sads:DebugSymbol.Symbol>d1dDOlxVc2Vyc1xzdGVwaFxzb3VyY2VccmVwb3NcQ29kZWZsb3dcQ29kZWZsb3cuRnJhbWV3b3JrVGVzdFJlc291cmNlc1xQcmludFRvdGFsUGF5LnhhbWwJAYIBAYYBAQQByAEB0AEBAwGjAQGmAQECJgM0DgIBASoFMQ4CAQYyBTKWAQIBAi8wL0cCAQksMSw7AgEHMkMykwECAQM=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>

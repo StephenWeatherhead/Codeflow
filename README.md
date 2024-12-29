@@ -11,7 +11,7 @@ The proposed solution is something like this:
 Using this method, we don't need to reference Workflow Foundation, third-party scripting engines, or third-party workflow engines.
 
 ## General Checklist
-- [ ] Visual Basic proof-of-concept - can VB code actually be called from C#? Develop a method that takes a visual basic expression and a list of parameters/types and generates a Visual Basic method from it.
+- [X] Visual Basic proof-of-concept - can VB code actually be called from C#? Develop a method that takes a visual basic expression and a list of parameters/types and generates a Visual Basic method from it.
 - [ ] Simple workflow proof-of-concept - convert a simple WriteLine workflow to code
 - [ ] CodeActivity proof-of-concept
 

@@ -92,7 +92,7 @@ namespace VisualBasicProofOfConcept
                 var writeLineText = writeLine.Members.First(m => m.Name == "Text").Value;
                 expression = writeLineText.Substring(1, writeLineText.Length - 2);
                 // get overall parameters
-                Dictionary<string, XamlType> overallParameters = new Dictionary<string, XamlType>();
+                Dictionary<string, XamlType> parametersInScope = new Dictionary<string, XamlType>();
                 var activityProperties = currentObject.Members.First(m => m.Name == "Members").Content;
                 foreach(var propertyObject in activityProperties)
                 {
@@ -100,12 +100,29 @@ namespace VisualBasicProofOfConcept
                     string typeString = propertyObject.Members.First(m => m.Name == "Type").Value;
                     XamlType propertyType = GetXamlType(typeString, namespaces, xmlReader.SchemaContext)
                         .TypeArguments.First();
-                    overallParameters.Add(propertyName, propertyType);
+                    parametersInScope.Add(propertyName, propertyType);
                 }
                 // get sequence parameters
+                var sequenceVariables = sequenceActivity.Members.First(m => m.Name == "Variables").Content;
+                foreach(var variableObject in sequenceVariables)
+                {
+                    string variableName = variableObject.Members.First(m => m.Name == "Name").Value;
+                    XamlType variableType = variableObject.XamlType.TypeArguments.First();
+                    parametersInScope.Add(variableName, variableType);
+                }
                 // detect parameters in expression
+                foreach(var parameter in parametersInScope)
+                {
+                    if(expression.Contains(parameter.Key))
+                    {
+                        parameters.Add(parameter.Key, parameter.Value);
+                    }
+                }
             }
+            Console.WriteLine("Our generated method is:");
             Console.WriteLine(VBHelper.GenerateVisualBasicMethod("GetWriteLineExpression", new XamlType(typeof(string), new XamlSchemaContext()), parameters, expression));
+            Console.WriteLine();
+            Console.WriteLine("And using that method gives the output: " + MyTestClass.GetWriteLineExpression("Stephen", 150));
             Console.ReadLine();
         }
 

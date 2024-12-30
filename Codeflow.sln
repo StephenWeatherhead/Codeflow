@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestApps", "TestApps", "{9E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeflow.FrameworkTestResources", "Codeflow.FrameworkTestResources\Codeflow.FrameworkTestResources.csproj", "{968650AD-0A01-4010-BE62-F35400BC8138}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleWorkflowProofOfConcept", "SimpleWorkflowProofOfConcept\SimpleWorkflowProofOfConcept.csproj", "{FDC46130-1126-483A-844D-A2F174A5EE42}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{968650AD-0A01-4010-BE62-F35400BC8138}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{968650AD-0A01-4010-BE62-F35400BC8138}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{968650AD-0A01-4010-BE62-F35400BC8138}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDC46130-1126-483A-844D-A2F174A5EE42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDC46130-1126-483A-844D-A2F174A5EE42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDC46130-1126-483A-844D-A2F174A5EE42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDC46130-1126-483A-844D-A2F174A5EE42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +69,7 @@ Global
 		{A73E9333-084F-4315-96CC-DF137FD66075} = {9E05B008-4233-47A1-AFB3-BD536ED1B4AF}
 		{89A12B22-924E-4213-A0CE-D4174AEC7540} = {9E05B008-4233-47A1-AFB3-BD536ED1B4AF}
 		{968650AD-0A01-4010-BE62-F35400BC8138} = {9E05B008-4233-47A1-AFB3-BD536ED1B4AF}
+		{FDC46130-1126-483A-844D-A2F174A5EE42} = {9E05B008-4233-47A1-AFB3-BD536ED1B4AF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {34746F13-F89C-42E8-BA10-4F8F93A5A426}

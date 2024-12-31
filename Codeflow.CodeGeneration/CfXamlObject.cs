@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace Codeflow.CodeGeneration
 {
-    internal class CfXamlObject
+    public class CfXamlObject
     {
+        public CfXamlObject(CfXamlType type)
+        {
+            XamlType = type;
+            Members = new List<CfXamlMember>();
+        }
         public CfXamlType XamlType { get; set; }
         public List<CfXamlMember> Members { get; set; }
     }

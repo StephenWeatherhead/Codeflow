@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace Codeflow.CodeGeneration
 {
-    internal class CfXamlWorkflow
+    public class CfXamlWorkflow
     {
-        public string Class { get; set; }
+        public CfXamlWorkflow()
+        {
+            Arguments = new List<CfArgument>();
+        }
+        public string? Class { get; set; }
         public List<CfArgument> Arguments { get; set; }
         public CfXamlObject? Content { get; set; }
     }

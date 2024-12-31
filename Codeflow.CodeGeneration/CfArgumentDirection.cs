@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Codeflow.CodeGeneration
 {
-    internal enum CfArgumentDirection
+    public enum CfArgumentDirection
     {
         In, Out, InOut, Property
     }

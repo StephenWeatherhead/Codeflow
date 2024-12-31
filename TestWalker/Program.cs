@@ -33,7 +33,7 @@ namespace TestWalker
                             spaces++;
                             break;
                         case XamlNodeType.StartMember:
-                            string memberName = xmlReader.Member == XamlLanguage.UnknownContent ? "Content" : xmlReader.Member.Name;
+                            string memberName = xmlReader.Member.Name;
                             Console.WriteLine(GetSpaces(spaces) + "<" + objectStack.Peek() + "." + memberName + ">");
                             memberStack.Push(memberName);
                             break;

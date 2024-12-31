@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Codeflow.CodeGeneration
 {
-    internal class CSHelper
+    public class CSHelper
     {
     }
 }
